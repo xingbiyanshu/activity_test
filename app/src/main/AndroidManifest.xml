@@ -9,11 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity1">
-            <intent-filter>
+        <activity android:name=".Activity1"> <!--name是唯一必须的属性，而且发布后不应更改（清单文件中的内容发布后都不应该更改，可以扩展）  -->
+            <intent-filter
+                android:icon="@drawable/act1_if_ico"
+                android:label="@string/if1_label"
+                android:priority="999"> <!--todo 还有更多属性　-->
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
     </application>
