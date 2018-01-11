@@ -30,18 +30,30 @@
         <activity android:name=".Activity2"
             android:icon="@drawable/act2_ico"
             android:label="@string/act2_label"
-            android:exported="true"> <!--name是唯一必须的属性，而且发布后不应更改（清单文件中的内容发布后都不应该更改，可以扩展）  -->
+            android:exported="true">
             <intent-filter
                 android:icon="@drawable/if2_ico"
                 android:label="@string/if2_label"
-                android:priority="888"> <!--todo 还有更多属性　-->
+                android:priority="888">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" /> <!--必须要带，否则无法收到命令行"adb shell am start -a android.intent.action.VIEW"发出的intent，进而弹出的activity列表中将没有该activity-->
                 <!--<action android:name="android.intent.action.MAIN" /> &lt;!&ndash;可以声明多个activity为主入口&ndash;&gt;-->
                 <!--<category android:name="android.intent.category.LAUNCHER" />&lt;!&ndash;可以声明多个activity为launcher&ndash;&gt;&lt;!&ndash;同时存在多个入口和launcher时，会在桌面全部展示出来。可见app不是一个封闭的“整体”，而是多个“独立”的组件组合而成的，组件之间彼此平等、互助&ndash;&gt;-->
             </intent-filter>
         </activity>
-        
+        <activity android:name=".Activity3"
+            android:icon="@drawable/act3_ico"
+            android:label="@string/act3_label"
+            android:exported="true">
+            <intent-filter
+                android:icon="@drawable/if3_ico"
+                android:label="@string/if3_label"
+                android:priority="777">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" /> <!--Activity3的intent filter和Activity2的一样，"adb shell am start -a android.intent.action.VIEW"这样会导致无法分辨触发具体哪一个，进而导致的现象就是activity列表中没有该activity-->
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
