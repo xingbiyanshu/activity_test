@@ -22,7 +22,8 @@
                 android:priority="999"> <!--todo 还有更多属性,intent-filter至少要包含一个action，可包含任意个action,category,data的任意组合-->
                 <action android:name="android.intent.action.MAIN" /><!--action.MAIN——程序主（默认）入口 -->
                 <category android:name="android.intent.category.DEFAULT" /><!--若发送的intent未填写category，则默认为DEFAULT，隐式intent不填写category，故支持接收隐式intent的过滤器需带上category.DEFAULT
-                尽管存在“.category.LAUNCHER”时该category可以省略，但仍建议带上，否则将无法收到命令行"adb shell am start -a android.intent.action.MAIN"发出的intent -->
+                尽管存在“.category.LAUNCHER”时该category可以省略，但仍建议带上，否则将无法收到命令行"adb shell am start -a android.intent.action.MAIN"发出的intent，也无法通过命令
+                 ＂adb shell am start com.example.sissi.activitytest＂启动（除非带上类名），因为它们都是发送的隐式intent-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
