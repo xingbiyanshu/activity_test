@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ActivityTest</string>
-    <string name="if1_label">if1_label</string>
+    <string name="act1_label">act1</string>
+    <string name="act2_label">act2</string>
+    <string name="if1_label">if1</string>
+    <string name="if2_label">if2</string>
 </resources>

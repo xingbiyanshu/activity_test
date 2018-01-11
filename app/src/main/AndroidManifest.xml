@@ -9,16 +9,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity1"> <!--name是唯一必须的属性，而且发布后不应更改（清单文件中的内容发布后都不应该更改，可以扩展）  -->
-            <intent-filter
-                android:icon="@drawable/act1_if_ico"
-                android:label="@string/if1_label"
-                android:priority="999"> <!--todo 还有更多属性　-->
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Activity1"
+            android:icon="@drawable/act1_ico"
+            android:label="@string/act1_label"
+            android:exported="true"> <!--name是唯一必须的属性，而且发布后不应更改（清单文件中的内容发布后都不应该更改，可以扩展）  -->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--filter中的属性会覆盖activity中的，activity中的又会覆盖application中的，如此处的icon和label属性-->
+            <!--android:icon="@drawable/act1_if_ico"-->
+            <!--android:label="@string/if1_label"-->　
+
+            <intent-filter
+                android:priority="999"> <!--todo 还有更多属性,intent-filter至少要包含一个action，可包含任意个action,category,data的任意组合-->
+                <action android:name="android.intent.action.MAIN" /><!--action.MAIN——程序主（默认）入口 -->
+                <category android:name="android.intent.category.DEFAULT" /><!--若发送的intent未填写category，则默认为DEFAULT，隐式intent不填写category，故支持接收隐式intent的过滤器需带上category.DEFAULT
+                尽管存在“.category.LAUNCHER”时该category可以省略，但仍建议带上，否则将无法收到命令行"adb shell am start -a android.intent.action.MAIN"发出的intent -->
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Activity2"
+            android:icon="@drawable/act2_ico"
+            android:label="@string/act2_label"
+            android:exported="true"> <!--name是唯一必须的属性，而且发布后不应更改（清单文件中的内容发布后都不应该更改，可以扩展）  -->
+            <intent-filter
+                android:icon="@drawable/if2_ico"
+                android:label="@string/if2_label"
+                android:priority="888"> <!--todo 还有更多属性　-->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" /> <!--必须要带，否则无法收到命令行"adb shell am start -a android.intent.action.VIEW"发出的intent，进而弹出的activity列表中将没有该activity-->
+                <!--<action android:name="android.intent.action.MAIN" /> &lt;!&ndash;可以声明多个activity为主入口&ndash;&gt;-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />&lt;!&ndash;可以声明多个activity为launcher&ndash;&gt;&lt;!&ndash;同时存在多个入口和launcher时，会在桌面全部展示出来。可见app不是一个封闭的“整体”，而是多个“独立”的组件组合而成的，组件之间彼此平等、互助&ndash;&gt;-->
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>
