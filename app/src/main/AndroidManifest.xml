@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".WelcomeActivity"
+            android:noHistory="true"> <!--noHistory为true则该activity在切换到其它activity时不会被保存在堆栈中(被finish了),这样按返回键不会回到该activity。
+             这适合欢迎页面，登陆页面等“临时性”页面-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -20,8 +22,10 @@
         <activity
             android:name=".Activity1"
             android:icon="@drawable/act1_ico"
-            android:label="@string/act1_label"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此名称 ） -->
-
+            android:label="@string/act1_label"
+            android:permission="android.permission.ACCESS_NETWORK_STATE"
+            android:process="com.example.proc1"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
+            <!--TODO permission属性属性只能限制其他应用的组件访问本activity？本app内的组件启动不受该属性影响？-->
             <!-- filter中的属性会覆盖activity中的，activity中的又会覆盖application中的，如此处的icon和label属性 -->
             <!-- android:icon="@drawable/act1_if_ico" -->
             <!-- android:label="@string/if1_label" -->

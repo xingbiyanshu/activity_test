@@ -9,6 +9,7 @@ public class WelcomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PcTrace.p("-=->");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
