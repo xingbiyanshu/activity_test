@@ -24,8 +24,10 @@
             android:icon="@drawable/act1_ico"
             android:label="@string/act1_label"
             android:permission="android.permission.ACCESS_NETWORK_STATE"
-            android:process="com.example.proc1"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
+            android:process=":proc1"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
             <!--TODO permission属性属性只能限制其他应用的组件访问本activity？本app内的组件启动不受该属性影响？-->
+            <!--process属性能使该组件在新的进程运行。 这有很多用途，比如：突破单进程在资源方面的一些限制，运行独立的后台守护进程，当主进程崩溃时守护进程仍存活着，可以做些清场善后的工作（如记录日志，发送邮件等）    -->
+
             <!-- filter中的属性会覆盖activity中的，activity中的又会覆盖application中的，如此处的icon和label属性 -->
             <!-- android:icon="@drawable/act1_if_ico" -->
             <!-- android:label="@string/if1_label" -->
