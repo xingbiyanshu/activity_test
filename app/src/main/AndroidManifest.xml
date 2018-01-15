@@ -3,6 +3,7 @@
     package="com.example.sissi.activitytest">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,8 +24,8 @@
                 <action android:name="android.intent.action.MAIN" /><!--action.MAIN——程序主（默认）入口 -->
                 <category android:name="android.intent.category.DEFAULT" /><!--若发送的intent未填写category，则默认为DEFAULT，隐式intent不填写category，故支持接收隐式intent的过滤器需带上category.DEFAULT
                 尽管存在“.category.LAUNCHER”时该category可以省略，但仍建议带上，否则将无法收到命令行"adb shell am start -a android.intent.action.MAIN"发出的intent，也无法通过命令
-                 ＂adb shell am start com.example.sissi.activitytest＂启动（除非带上类名），因为它们都是发送的隐式intent-->
-                <category android:name="android.intent.category.LAUNCHER" />
+                 ＂adb shell am start com.example.sissi.activitytest＂启动（除非带上类名，不过可以用monkey启动），因为它们都是发送的隐式intent-->
+                <category android:name="android.intent.category.LAUNCHER" /> <!--该 Activity 是任务的初始 Activity，在系统的应用启动器中列出。若不带上则在launcher 界面不会被展示，且无法通过monkey、am等命令启动 -->
             </intent-filter>
         </activity>
 
@@ -41,6 +42,10 @@
                 <!--<action android:name="android.intent.action.MAIN" /> &lt;!&ndash;可以声明多个activity为主入口&ndash;&gt;-->
                 <!--<category android:name="android.intent.category.LAUNCHER" />&lt;!&ndash;可以声明多个activity为launcher&ndash;&gt;&lt;!&ndash;同时存在多个入口和launcher时，会在桌面全部展示出来。可见app不是一个封闭的“整体”，而是多个“独立”的组件组合而成的，组件之间彼此平等、互助&ndash;&gt;-->
             </intent-filter>
+            <intent-filter>
+                <action android:name="com.example.sissi.activitytest.ACTION2"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activity3"
             android:icon="@drawable/act3_ico"
@@ -52,6 +57,10 @@
                 android:priority="777">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" /> <!--Activity3的intent filter和Activity2的一样，"adb shell am start -a android.intent.action.VIEW"这样会导致无法分辨触发具体哪一个，进而导致的现象就是activity列表中没有该activity-->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.example.sissi.activitytest.ACTION3"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
