@@ -43,8 +43,10 @@
                 <!--<category android:name="android.intent.category.LAUNCHER" />&lt;!&ndash;可以声明多个activity为launcher&ndash;&gt;&lt;!&ndash;同时存在多个入口和launcher时，会在桌面全部展示出来。可见app不是一个封闭的“整体”，而是多个“独立”的组件组合而成的，组件之间彼此平等、互助&ndash;&gt;-->
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="com.example.sissi.activitytest.ACTION2"/>
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.TEST" />
             </intent-filter>
         </activity>
         <activity android:name=".Activity3"
