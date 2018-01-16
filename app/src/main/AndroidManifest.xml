@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity"
-            android:noHistory="true"> <!--noHistory为true则该activity在切换到其它activity时不会被保存在堆栈中(被finish了),这样按返回键不会回到该activity。
+            android:noHistory="true"
+            android:taskAffinity="com.example.sissi.activitytest.affinity0"> <!--noHistory为true则该activity在切换到其它activity时不会被保存在堆栈中(被finish了),这样按返回键不会回到该activity。
              这适合欢迎页面，登陆页面等“临时性”页面-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,8 @@
             android:icon="@drawable/act1_ico"
             android:label="@string/act1_label"
             android:permission="android.permission.ACCESS_NETWORK_STATE"
-            android:process=":proc1"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
+            android:process=":proc1"
+            android:launchMode="singleInstance"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
             <!--TODO permission属性属性只能限制其他应用的组件访问本activity？本app内的组件启动不受该属性影响？-->
             <!--process属性能使该组件在新的进程运行。 这有很多用途，比如：突破单进程在资源方面的一些限制，运行独立的后台守护进程，当主进程崩溃时守护进程仍存活着，可以做些清场善后的工作（如记录日志，发送邮件等）    -->
 
@@ -47,9 +49,9 @@
         </activity>
         <activity
             android:name=".Activity2"
-            android:exported="true"
+            android:exported="false"
             android:icon="@drawable/act2_ico"
-            android:label="@string/act2_label">
+            android:label="@string/act2_label"> <!--exported="true"允许其它应用启动该activity，否则只能应用内启动，默认有intent-filter则为true，否则为false-->
             <intent-filter
                 android:icon="@drawable/if2_ico"
                 android:label="@string/if2_label"
@@ -70,9 +72,12 @@
         </activity>
         <activity
             android:name=".Activity3"
-            android:exported="true"
+            android:exported="false"
             android:icon="@drawable/act3_ico"
-            android:label="@string/act3_label">
+            android:label="@string/act3_label"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.example.sissi.activitytest.affinity3"
+            android:excludeFromRecents="true"><!--singleTask需配合独自的taskAffinity,才能在启动该activity时创建新的task-->
             <intent-filter
                 android:icon="@drawable/if3_ico"
                 android:label="@string/if3_label"
@@ -83,7 +88,6 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="com.example.sissi.activitytest.ACTION3" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
