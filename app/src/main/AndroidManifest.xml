@@ -88,12 +88,18 @@
                 android:label="@string/if3_label"
                 android:priority="777">
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" /> <!-- Activity3的intent filter和Activity2的一样，"adb shell am start -a android.intent.action.VIEW"这样会导致无法分辨触发具体哪一个，进而导致的现象就是activity列表中没有该activity -->
+                <data android:mimeType="*/*"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="com.example.sissi.activitytest.ACTION3" />
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <!--<data android:mimeType="text/plain"/>-->
+                <data android:mimeType="*/*"/>
             </intent-filter>
         </activity>
     </application>

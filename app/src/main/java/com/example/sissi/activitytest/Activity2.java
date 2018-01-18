@@ -17,7 +17,12 @@ public class Activity2 extends Activity {
             @Override
             public void run() {
                 Intent intent = new Intent();
-                intent.setAction("com.example.sissi.activitytest.ACTION3"); // 隐式匹配必须要设置action
+//                intent.setAction("com.example.sissi.activitytest.ACTION3");
+//                intent.setAction("android.intent.action.VIEW")
+                intent.setAction("android.intent.action.SEND")
+                        .setType("text/plain")
+//                        .setType("image/jpeg")
+                ;
 //                intent.setFlags(
 //                        Intent.FLAG_ACTIVITY_NEW_TASK
 ////                        |Intent.FLAG_ACTIVITY_CLEAR_TOP

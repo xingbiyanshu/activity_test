@@ -22,8 +22,10 @@ public class Activity3 extends Activity {
                         Intent.FLAG_ACTIVITY_NEW_TASK
                         |Intent.FLAG_ACTIVITY_CLEAR_TOP
                         |Intent.FLAG_ACTIVITY_SINGLE_TOP
-                );
-//                startActivity(intent);
+                ); // 这三个标志组合在一起才等效于singleTask
+
+//                intent.setClass(Activity3.this, Activity1.class);
+                startActivity(intent);
             }
         }, 2000);
     }
