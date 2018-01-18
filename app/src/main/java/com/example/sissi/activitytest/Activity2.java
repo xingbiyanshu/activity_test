@@ -18,9 +18,26 @@ public class Activity2 extends Activity {
             public void run() {
                 Intent intent = new Intent();
                 intent.setAction("com.example.sissi.activitytest.ACTION3"); // 隐式匹配必须要设置action
+//                intent.setFlags(
+//                        Intent.FLAG_ACTIVITY_NEW_TASK
+////                        |Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                        |Intent.FLAG_ACTIVITY_SINGLE_TOP
+//                );
                 startActivity(intent);
             }
         }, 2000);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        PcTrace.p("-=->");
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        PcTrace.p("-=->");
+        super.onNewIntent(intent);
     }
 
     @Override
@@ -45,6 +62,12 @@ public class Activity2 extends Activity {
     protected void onPause() {
         PcTrace.p("-=->");
         super.onPause();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        PcTrace.p("-=->");
+        super.onSaveInstanceState(outState);
     }
 
     @Override

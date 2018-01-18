@@ -11,9 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity"
-            android:noHistory="true"
-            android:taskAffinity="com.example.sissi.activitytest.affinity0"> <!--noHistory为true则该activity在切换到其它activity时不会被保存在堆栈中(被finish了),这样按返回键不会回到该activity。
-             这适合欢迎页面，登陆页面等“临时性”页面-->
+            android:noHistory="true"> <!--noHistory为true则该activity在切换到其它activity时不会被保存在堆栈中(被finish了),这样按返回键不会回到该activity。
+             这适合欢迎页面，登陆页面等“临时性”页面。
+             注意： 一般情况下不要用这个属性，可以在需要的时候使用FLAG_ACTIVITY_NO_HISTORY标志启动该activity。
+              仅在无法指定FLAG_ACTIVITY_NO_HISTORY标志的情况下使用该标志，比如欢迎页面
+              不推荐使用该属性的理由是：对可能导致用户不熟悉的交互行为的属性均需谨慎使用，就像launchMode的singleTask和singleInstance-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -24,12 +26,12 @@
             android:name=".Activity1"
             android:icon="@drawable/act1_ico"
             android:label="@string/act1_label"
-            android:permission="android.permission.ACCESS_NETWORK_STATE"
-            android:process=":proc1"
-            android:launchMode="singleInstance"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
+            android:permission="android.permission.ACCESS_NETWORK_STATE"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
             <!--TODO permission属性属性只能限制其他应用的组件访问本activity？本app内的组件启动不受该属性影响？-->
             <!--process属性能使该组件在新的进程运行。 这有很多用途，比如：突破单进程在资源方面的一些限制，运行独立的后台守护进程，当主进程崩溃时守护进程仍存活着，可以做些清场善后的工作（如记录日志，发送邮件等）    -->
-
+            <!--默认的launchMode,当尝试跳转到该activity时总是会重新创建,即便请求的intent中携带了FLAG_ACTIVITY_CLEAR_TOP，故可保守设置为singleTop（设置为其他两种则太激进，它们的行为与正常相去甚远）
+             不过，最好还是保持默认模式，可在请求intent中设置“FLAG_ACTIVITY_SINGLE_TOP|FLAG_ACTIVITY_CLEAR_TOP” -->
+            <!--android的launchMode有点复杂而且设置不当会严重影响程序正常运行以及用户体验，故建议保持默认值就好，有特殊需求的可在请求intent中设置相应标志-->
             <!-- filter中的属性会覆盖activity中的，activity中的又会覆盖application中的，如此处的icon和label属性 -->
             <!-- android:icon="@drawable/act1_if_ico" -->
             <!-- android:label="@string/if1_label" -->
@@ -75,9 +77,12 @@
             android:exported="false"
             android:icon="@drawable/act3_ico"
             android:label="@string/act3_label"
-            android:launchMode="singleTask"
-            android:taskAffinity="com.example.sissi.activitytest.affinity3"
-            android:excludeFromRecents="true"><!--singleTask需配合独自的taskAffinity,才能在启动该activity时创建新的task-->
+            android:excludeFromRecents="true"
+            ><!--singleTask需配合独自的taskAffinity,才能在启动该activity时创建新的task。
+            singleTask是所有模式中行为最复杂的，可能带来诡异的交互，需谨慎使用-->
+            <!--taskAffinity，该activity亲和的任务，若要声明与任何任务不亲和则置空串即可 -->
+            <!--excludeFromRecents="true"不在最近任务列表中展示由该activity启动的(即以该activity为根)任务，
+             一般不要设置这个属性，可用带FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS标志启动的方式替代-->
             <intent-filter
                 android:icon="@drawable/if3_ico"
                 android:label="@string/if3_label"
