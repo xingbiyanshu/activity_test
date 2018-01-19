@@ -2,6 +2,7 @@ package com.example.sissi.activitytest;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -16,19 +17,24 @@ public class Activity2 extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+//                Uri uri = Uri.parse("http://www.google.com");
+                Uri uri = Uri.parse("mailto:gaofan@kedacom.com");
                 Intent intent = new Intent();
 //                intent.setAction("com.example.sissi.activitytest.ACTION3");
-//                intent.setAction("android.intent.action.VIEW")
-                intent.setAction("android.intent.action.SEND")
-                        .setType("text/plain")
-//                        .setType("image/jpeg")
+//                intent.setAction(Intent.ACTION_VIEW)
+//                intent.setAction(Intent.ACTION_SEND)
+                intent.setAction(Intent.ACTION_SENDTO)
+////                        .setType("text/plain")
+////                        .setType("image/jpeg")
+                        .setData(uri)
                 ;
-//                intent.setFlags(
-//                        Intent.FLAG_ACTIVITY_NEW_TASK
-////                        |Intent.FLAG_ACTIVITY_CLEAR_TOP
-//                        |Intent.FLAG_ACTIVITY_SINGLE_TOP
-//                );
-                startActivity(intent);
+                intent.setFlags(
+                        Intent.FLAG_ACTIVITY_NEW_TASK
+                        |Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        |Intent.FLAG_ACTIVITY_SINGLE_TOP
+                );
+//                intent.setAction("com.example.sissi.activitytest.ACTION3");
+//                startActivity(intent);
             }
         }, 2000);
     }

@@ -17,15 +17,17 @@ public class Activity3 extends Activity {
             @Override
             public void run() {
                 Intent intent = new Intent();
-                intent.setAction("com.example.sissi.activitytest.ACTION2");
+                intent.setAction("com.example.sissi.activitytest.ACTION1");
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NEW_TASK
-                        |Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        |Intent.FLAG_ACTIVITY_SINGLE_TOP
+//                        |Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                        |Intent.FLAG_ACTIVITY_SINGLE_TOP
                 ); // 这三个标志组合在一起才等效于singleTask
 
 //                intent.setClass(Activity3.this, Activity1.class);
-                startActivity(intent);
+                if (null != intent.resolveActivity(getPackageManager())){ // 判断该intent是否能被处理
+//                startActivity(intent);
+                }
             }
         }, 2000);
     }

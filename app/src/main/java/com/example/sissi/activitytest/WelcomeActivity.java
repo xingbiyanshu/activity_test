@@ -23,7 +23,7 @@ public class WelcomeActivity extends Activity {
 //                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 //                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 //                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+//                startActivity(intent);
             }
         }, 2000);
     }

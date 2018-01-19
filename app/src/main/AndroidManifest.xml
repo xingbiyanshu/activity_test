@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sissi.activitytest">
 
+    <permission android:name="com.example.sissi.activitytest.PERMISSSION1"
+        android:label="hehe"/>
+    <!--<uses-permission android:name="com.example.sissi.activitytest.PERMISSSION1"/>-->
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -10,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".WelcomeActivity"
             android:noHistory="true"> <!--noHistory为true则该activity在切换到其它activity时不会被保存在堆栈中(被finish了),这样按返回键不会回到该activity。
              这适合欢迎页面，登陆页面等“临时性”页面。
@@ -26,7 +31,7 @@
             android:name=".Activity1"
             android:icon="@drawable/act1_ico"
             android:label="@string/act1_label"
-            android:permission="android.permission.ACCESS_NETWORK_STATE"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
+            android:permission="com.example.sissi.activitytest.PERMISSSION1"> <!-- name是唯一必须的属性，而且发布后不应更改（暴露给外界的组件(android:exported=true)不应更此 ） -->
             <!--TODO permission属性属性只能限制其他应用的组件访问本activity？本app内的组件启动不受该属性影响？-->
             <!--process属性能使该组件在新的进程运行。 这有很多用途，比如：突破单进程在资源方面的一些限制，运行独立的后台守护进程，当主进程崩溃时守护进程仍存活着，可以做些清场善后的工作（如记录日志，发送邮件等）    -->
             <!--默认的launchMode,当尝试跳转到该activity时总是会重新创建,即便请求的intent中携带了FLAG_ACTIVITY_CLEAR_TOP，故可保守设置为singleTop（设置为其他两种则太激进，它们的行为与正常相去甚远）
