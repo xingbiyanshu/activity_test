@@ -26,8 +26,11 @@ public class Activity1 extends Activity {
 //                        |Intent.FLAG_ACTIVITY_SINGLE_TOP
 //                );
 //                startActivity(intent);
+                startService(new Intent(Activity1.this, Service1.class));
             }
         }, 3000);
+
+        startService(new Intent(Activity1.this, Service1.class));
     }
 
     @Override
